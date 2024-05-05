@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+        @media only screen and (max-width: 600px) {
+          .logo {
+              font-size: 20px;
+          }
+          .links {
+              display: flex;
+          }
+        }
+      </style>
+</head>
+<body class="bg-grey-100 fony-sans antialiased">
+    <!--Navbar-->
+    <nav class="bg-green-600 p-4 text-white flex justify-between">
+        <div>
+            <h1 class="text-3xl logo font-bold">AI Blog Generators</h1>
+        </div>
+        <div class="space-x-2 links">
+            <a href="login" class="text-white hover:underline">Login</a>
+            <a href="signup" class="text-white hover:underline">Signup</a>
+        </div>
+    </nav>
+    
+    <!-- Main Content-->
+    <div class="flex items-center justify-center h-screen">
+        <div class="bg-white p-8 shadow-md rounded-lg max-w-md w-full bg-neutral-400 ">
+            <!--LOgin Form-->
+            <form class="space-y-4" action="" method="POST">
+                {% csrf_token %}
+
+                {% if error_message %}
+                <div align="center" style="color: red">
+                   <h2>
+                        {{error_message}}
+                   </h2>
+                </div>
+                {% endif %}
+
+                <h2 class="text-xl font-semibold">Login</h2>
+                <div>
+                    <label for="username" class="block mb-1 font-semibold">Username</label>
+                    <input type="text" id="username"  name="username" placeholder="Enter your Username" class="w-full p-2 border rounded">
+
+                </div>
+                <div>
+                    <label for="password" class="block mb-1 font-semibold">Password</label>
+                    <input type="password" id="password"  name="password" placeholder="Enter your password" class="w-full p-2 border rounded">
+
+                </div>
+                <div>
+                    Don't Have a Account ? <a href="signup" class="hover:underline text-green-600" >Create now</a>
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white rounded hover:bg-green-700 p-2">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
