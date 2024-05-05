@@ -82,8 +82,7 @@ def get_transcription(link):
     
     
 # def generate_blog_from_transcription(transcription):
-#     openai.api_key = "sk-proj-NhyIFiMh5CTwhPI7QReKT3BlbkFJs76S6vT64x3ioZN7fKOl"
-
+#  
 #     prompt = f"Based on the following transcript from a Youtube Video , Write a comrehensive blog article, write it based on the transcript , but dont make it look like  a youtube video , make it look like a proper blog article: \n\n {transcription}\n\n Article:"
     
 #     response = openai.completions.create(
