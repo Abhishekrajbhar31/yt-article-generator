@@ -9,7 +9,6 @@ import json
 import os
 from pytube import YouTube
 import assemblyai as aai
-import openai
 from .models import BlogPost
 from dotenv import load_dotenv
 import os
@@ -40,10 +39,6 @@ def generate_blog(request):
             return JsonResponse({'error' : 'Failed to get transscipt'}, status=500)
         
         
-        #use OpenAI to generate the blog
-                # blog_content = generate_blog_from_transcription(transcription)
-                # if not blog_content:
-                #     return JsonResponse({'error' : 'Failed to get transscipt'}, status=500)
         #save blog article to database
         new_blog_article = BlogPost.objects.create(
             user = request.user ,
@@ -81,21 +76,7 @@ def get_transcription(link):
     transcriber = aai.Transcriber()
     transcript = transcriber.transcribe(audio_file)
     return transcript.text
-    
-    
-# def generate_blog_from_transcription(transcription):
-#  
-#     prompt = f"Based on the following transcript from a Youtube Video , Write a comrehensive blog article, write it based on the transcript , but dont make it look like  a youtube video , make it look like a proper blog article: \n\n {transcription}\n\n Article:"
-    
-#     response = openai.completions.create(
-#         model="gpt-3.5-turbo-0613",
-#         prompt=prompt,
-#         max_tokens=1000
-#     )
-    
-#     generated_content = response.choices[0].text.strip()
-    
-#     return generated_content
+
 
 def blog_list(request):
     blog_articles = BlogPost.objects.filter(user=request.user)
