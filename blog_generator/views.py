@@ -11,6 +11,8 @@ from pytube import YouTube
 import assemblyai as aai
 import openai
 from .models import BlogPost
+from dotenv import load_dotenv
+import os
 # Create your views here.
 
 
@@ -75,7 +77,7 @@ def download_audio(link):
 
 def get_transcription(link):
     audio_file = download_audio(link)
-    aai.settings.api_key = "b7f40159ef8a4fa7a55690d0c1ce2b5a"
+    aai.settings.api_key = os.environ.get('API_KEY')
     transcriber = aai.Transcriber()
     transcript = transcriber.transcribe(audio_file)
     return transcript.text
